@@ -30,9 +30,32 @@ baliseArrowLeft.addEventListener("click", function() {
 	}
 	let slideEnCours = slides[slideDefaut]
 	//fin de l'etape
-	//verification
-	console.log(slideEnCours)
-	console.log(slideDefaut)
+	//changement de attribue / image avec pour base le compte precedent
+	let bannerImg = document.querySelector(".banner-img")
+	bannerImg.setAttribute("src", "./assets/images/slideshow/"+slides[slideDefaut].image)
+	//fin de l'etape
+	//mise en place du innerhtml pour inserer le text mis en place dans le tableau "slides"
+	let textTest = document.querySelector(".banner-text")
+	textTest.innerHTML = slides[slideDefaut].tagLine
+	//fin de l'etape
+	let BaliseDotAll = document.querySelectorAll(".dot")
+	BaliseDotAll[0].classList.remove("dot_selected")
+	BaliseDotAll[1].classList.remove("dot_selected")
+	BaliseDotAll[2].classList.remove("dot_selected")
+	BaliseDotAll[3].classList.remove("dot_selected")
+	BaliseDotAll[slideDefaut].classList.add("dot_selected")
+	
+})
+//fleche et fonctionement ===== >
+//selection de la fleche et mise en place de la fonction
+let baliseArrowRight = document.querySelector(".arrow_right")
+baliseArrowRight.addEventListener("click", function() {
+	//cela effectue un compte pour gerer les slide en cours et le compteur lorsque'on apuie sur les fleche
+	slideDefaut++
+	if (slideDefaut > 3) {
+		slideDefaut = 0
+	}
+	let slideEnCours = slides[slideDefaut]
 	//fin de l'etape
 	//changement de attribue / image avec pour base le compte precedent
 	let bannerImg = document.querySelector(".banner-img")
@@ -42,26 +65,18 @@ baliseArrowLeft.addEventListener("click", function() {
 	let textTest = document.querySelector(".banner-text")
 	textTest.innerHTML = slides[slideDefaut].tagLine
 	//fin de l'etape
-})
+	let BaliseDotAll = document.querySelectorAll(".dot")
+	BaliseDotAll[0].classList.remove("dot_selected")
+	BaliseDotAll[1].classList.remove("dot_selected")
+	BaliseDotAll[2].classList.remove("dot_selected")
+	BaliseDotAll[3].classList.remove("dot_selected")
+	BaliseDotAll[slideDefaut].classList.add("dot_selected")
 
-let baliseArrowRight = document.querySelector(".arrow_right")
-baliseArrowRight.addEventListener("click", function() {
-	slideDefaut++
-	if (slideDefaut > 3) {
-		slideDefaut = 0
-	}
-	let slideEnCours = slides[slideDefaut]
-	console.log(slideEnCours)
-	console.log(slideDefaut)
-	let bannerImg = document.querySelector(".banner-img")
-	bannerImg.setAttribute("src", "./assets/images/slideshow/"+slides[slideDefaut].image)
-	let textTest = document.querySelector(".banner-text")
-	textTest.innerHTML = slides[slideDefaut].tagLine
 })
 
 // boucle pour ajouter les dot en fonction du nombre de slides
 
-for (let compteur = 0; compteur < slides.length; compteur++){
+for (let compteurBalise = 0; compteurBalise < slides.length; compteurBalise++){
 	//crée un element <p></p>
 	let baliseDot = document.createElement("p")
 	//ajoute la classe dot dans la balise
@@ -70,6 +85,7 @@ for (let compteur = 0; compteur < slides.length; compteur++){
 	let baliseDots = document.querySelector(".dots")
 	//mise en place de la liaison parent / enfant
 	baliseDots.appendChild(baliseDot)
-	
+	//creation et mise en place du dot de depart en selected
+	let BaliseDotAll = document.querySelectorAll(".dot")
+	BaliseDotAll[0].classList.add("dot_selected")
 }
-
