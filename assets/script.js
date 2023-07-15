@@ -19,20 +19,29 @@ const slides = [
 //compteur des Slides // numero des slides
 let slideDefaut = 0
 
-//permert de lire les fleches
+//fleche et fonctionement ===== >
+//selection de la fleche et mise en place de la fonction
 let baliseArrowLeft = document.querySelector(".arrow_left")
 baliseArrowLeft.addEventListener("click", function() {
+	//cela effectue un compte pour gerer les slide en cours et le compteur lorsque'on apuie sur les fleche
 	slideDefaut--
 	if (slideDefaut < 0) {
 		slideDefaut = 3
 	}
 	let slideEnCours = slides[slideDefaut]
+	//fin de l'etape
+	//verification
 	console.log(slideEnCours)
 	console.log(slideDefaut)
+	//fin de l'etape
+	//changement de attribue / image avec pour base le compte precedent
 	let bannerImg = document.querySelector(".banner-img")
 	bannerImg.setAttribute("src", "./assets/images/slideshow/"+slides[slideDefaut].image)
+	//fin de l'etape
+	//mise en place du innerhtml pour inserer le text mis en place dans le tableau "slides"
 	let textTest = document.querySelector(".banner-text")
 	textTest.innerHTML = slides[slideDefaut].tagLine
+	//fin de l'etape
 })
 
 let baliseArrowRight = document.querySelector(".arrow_right")
@@ -53,10 +62,13 @@ baliseArrowRight.addEventListener("click", function() {
 // boucle pour ajouter les dot en fonction du nombre de slides
 
 for (let compteur = 0; compteur < slides.length; compteur++){
+	//crée un element <p></p>
 	let baliseDot = document.createElement("p")
+	//ajoute la classe dot dans la balise
 	baliseDot.classList.add("dot")
-
+	//selection du parent ou inserer notre balise <p></p>
 	let baliseDots = document.querySelector(".dots")
+	//mise en place de la liaison parent / enfant
 	baliseDots.appendChild(baliseDot)
 	
 }
